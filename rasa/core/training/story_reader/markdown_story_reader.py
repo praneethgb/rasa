@@ -3,8 +3,8 @@ import json
 import logging
 import os
 import re
-from pathlib import PurePath
-from typing import Dict, Text, List, Any
+from pathlib import PurePath, Path
+from typing import Dict, Text, List, Any, Union
 
 import rasa.utils.io as io_utils
 from rasa.constants import DOCS_URL_DOMAINS, DOCS_URL_STORIES
@@ -27,7 +27,7 @@ class MarkdownStoryReader(StoryReader):
 
     """
 
-    async def read_from_file(self, filename: Text) -> List[StoryStep]:
+    async def read_from_file(self, filename: Union[Text, Path]) -> List[StoryStep]:
         """Given a md file reads the contained stories."""
 
         try:

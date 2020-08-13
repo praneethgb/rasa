@@ -16,6 +16,7 @@ from rasa.cli import (
     data,
     x,
     export,
+    convert,
 )
 from rasa.cli.arguments.default_arguments import add_logging_options
 from rasa.cli.utils import parse_last_positional_argument_as_model_path
@@ -61,6 +62,7 @@ def create_argument_parser() -> argparse.ArgumentParser:
     data.add_subparser(subparsers, parents=parent_parsers)
     export.add_subparser(subparsers, parents=parent_parsers)
     x.add_subparser(subparsers, parents=parent_parsers)
+    convert.add_subparser(subparsers, parents=parent_parsers)
 
     return parser
 

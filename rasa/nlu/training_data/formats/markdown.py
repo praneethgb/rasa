@@ -3,8 +3,9 @@ import re
 import typing
 from collections import OrderedDict
 from json import JSONDecodeError
-from typing import Any, Text, Optional, Tuple, Dict, Match
+from typing import Any, Text, Optional, Tuple, Dict
 
+import rasa.utils.io as io_utils
 from rasa.constants import DOCS_URL_TRAINING_DATA_NLU
 from rasa.nlu.training_data.formats.readerwriter import (
     TrainingDataReader,
@@ -200,6 +201,11 @@ class MarkdownReader(TrainingDataReader):
 
         self.current_section = section
         self.current_title = title
+
+    @staticmethod
+    def is_markdown_nlu_file(filename: Text) -> bool:
+        content = io_utils.read_file(filename)
+        return any(marker in content for marker in MARKDOWN_SECTION_MARKERS)
 
 
 class MarkdownWriter(TrainingDataWriter):
